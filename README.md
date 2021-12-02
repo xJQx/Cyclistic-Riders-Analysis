@@ -17,10 +17,13 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 
 <br>
 
-## R Documentation of Data Analysis Process:
-- Ask, Prepare, Process, Analyze, Share, Act
+## Documentation of Data Analysis Process:
+### R Documentation:
 
 **Link**
+
+### Excel Pivot Table and Chart:
+
 
 <br>
 
@@ -72,6 +75,13 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 <p>
   <img width="480" alt="chart-res3-2" src="https://user-images.githubusercontent.com/47933193/144337188-f82f171d-dfec-495a-932e-8a8b0e277a3b.png">
   <img width="480" alt="chart-res3-3" src="https://user-images.githubusercontent.com/47933193/144337210-c920b194-b8f3-4f93-8ff5-fcc5749a1300.png">
+</p>
+
+---
+
+### Number of Rides Throughout the Month:
+<p align="center">
+  <img width="700" alt="excel-pivot-chart" src="https://user-images.githubusercontent.com/47933193/144343177-38aa103f-f02b-41d8-8576-ff03616d0ffe.png">
 </p>
 
 ---
