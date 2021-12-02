@@ -1,0 +1,532 @@
+---
+title: "How Does a Bike-Share Navigate Speedy Success?"
+author: 'By: Toh Jing Qiang'
+date: "1 Dec 2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+![](Visualisation/logo.png)
+
+<br>
+
+# Scenario
+
+<br>
+I am a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, my team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, my team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve my recommendations, so they must be backed up with compelling data insights and professional data visualizations.
+
+<br>
+<br>
+
+# Ask:
+### Business Task
+- How do annual members and casual riders use Cyclistic bikes differently?
+- Analyse how annual members and causal riders use Cyclistic bikes differently and provide data-driven recommendations for a new marketing strategy to convert causal riders to members
+
+<br>
+
+### Key Stakeholders
+- **Lily Monero**: Director of Marketing and my manager
+- **Cyclistic Marketing analytics team**: Team of data analysts
+- **Cyclists executive team**: Stakeholder approving recommendations
+
+<br>
+<br>
+
+# Prepare
+
+### Libraries used
+```{r message=FALSE}
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+```
+<br>
+
+### Step 1: Collect Data
+Upload Divvy Datasets:
+```{r message=FALSE}
+q2_2019 <- read.csv("Dataset/Raw/Divvy_Trips_2019_Q2.csv")
+q3_2019 <- read.csv("Dataset/Raw/Divvy_Trips_2019_Q3.csv")
+q4_2019 <- read.csv("Dataset/Raw/Divvy_Trips_2019_Q4.csv")
+q1_2020 <- read.csv("Dataset/Raw/Divvy_Trips_2020_Q1.csv")
+```
+<br>
+
+### Step 2: Wrangle data and combine into a single file
+Compare column names of each data set:
+```{r}
+colnames(q1_2020)
+colnames(q4_2019)
+colnames(q3_2019)
+colnames(q2_2019)
+```
+There is inconsistency in the column names across each data set.
+
+<br>
+
+Rename column names to make it consistent with q1_2020:
+```{r}
+q2_2019 <- rename(q2_2019
+                  ,ride_id = "X01...Rental.Details.Rental.ID"
+                  ,rideable_type = "X01...Rental.Details.Bike.ID" 
+                  ,started_at = "X01...Rental.Details.Local.Start.Time"  
+                  ,ended_at = "X01...Rental.Details.Local.End.Time"  
+                  ,start_station_name = "X03...Rental.Start.Station.Name" 
+                  ,start_station_id = "X03...Rental.Start.Station.ID"
+                  ,end_station_name = "X02...Rental.End.Station.Name" 
+                  ,end_station_id = "X02...Rental.End.Station.ID"
+                  ,member_casual = "User.Type"
+                  ,tripduration = "X01...Rental.Details.Duration.In.Seconds.Uncapped"
+                  ,gender = "Member.Gender"
+                  ,birthyear = "X05...Member.Details.Member.Birthday.Year")
+q3_2019 <- rename(q3_2019
+                  ,ride_id = trip_id
+                  ,rideable_type = bikeid 
+                  ,started_at = start_time  
+                  ,ended_at = end_time  
+                  ,start_station_name = from_station_name 
+                  ,start_station_id = from_station_id 
+                  ,end_station_name = to_station_name 
+                  ,end_station_id = to_station_id 
+                  ,member_casual = usertype)
+q4_2019 <- rename(q4_2019
+                  ,ride_id = trip_id
+                  ,rideable_type = bikeid 
+                  ,started_at = start_time  
+                  ,ended_at = end_time  
+                  ,start_station_name = from_station_name 
+                  ,start_station_id = from_station_id 
+                  ,end_station_name = to_station_name 
+                  ,end_station_id = to_station_id 
+                  ,member_casual = usertype)
+```
+<br>
+
+Compare column names of each data frame again:
+```{r}
+colnames(q1_2020)
+colnames(q4_2019)
+colnames(q3_2019)
+colnames(q2_2019)
+```
+Column names of are consistent now.
+
+<br>
+
+Inspect the data frames and look for inconsistency:
+```{r}
+str(q1_2020)
+str(q4_2019)
+str(q3_2019)
+str(q2_2019)
+```
+<br>
+
+Convert 'ride_id' and 'rideable_type' to character so that they are consistent across data frames:
+```{r}
+q4_2019 <-  mutate(q4_2019, ride_id = as.character(ride_id)
+                   ,rideable_type = as.character(rideable_type)) 
+q3_2019 <-  mutate(q3_2019, ride_id = as.character(ride_id)
+                   ,rideable_type = as.character(rideable_type)) 
+q2_2019 <-  mutate(q2_2019, ride_id = as.character(ride_id)
+                   ,rideable_type = as.character(rideable_type)) 
+```
+<br>
+
+### Combine individual quarter's data frames into one data frame
+```{r}
+divvy_trips <- bind_rows(q2_2019, q3_2019, q4_2019, q1_2020)
+head(divvy_trips)
+```
+<br>
+
+Remove 'birthyear', 'gender' and 'tripduration' as this data was not included in q1 2020.
+Remove lat and long as it was only included in q1 2020:
+```{r}
+divvy_trips <- divvy_trips %>%
+  select(-c(birthyear, gender, tripduration
+            , start_lat, start_lng, end_lat, end_lng))
+colnames(divvy_trips)
+```
+<br>
+<br>
+
+# Process
+### Step 3: Clean up and Add Data to prepare for analysis
+Inspect the new table that has been created:
+```{r}
+# column names
+colnames(divvy_trips)
+
+# number of rows
+nrow(divvy_trips)
+
+# dimension of data frame
+dim(divvy_trips)
+
+# first/last 6 rows of data fram
+head(divvy_trips)
+tail(divvy_trips)
+
+#See list of columns and data types (numeric, character, etc)
+str(divvy_trips)
+```
+<br>
+
+### There are a few problems we will need to fix for analysis:
+
+**1. In the "member_casual" column, there are two names for members ("member" and "Subscriber") and two names for casual riders ("Customer" and "casual"). I will need to consolidate that from four to two labels.**
+
+<br>
+
+In the "member_casual" column, replace "Subscriber" with "member" and "Customer" with "casual":
+```{r}
+# Begin by seeing how many observations fall under each usertype
+table(divvy_trips$member_casual)
+
+# Reassign member_casual to the desired values
+divvy_trips <- divvy_trips %>%
+  mutate(member_casual = recode(member_casual
+                                , "Subscriber" =  "member"
+                                , "Customer" = "casual"))
+
+# Check to make sure the proper number of observations were reassigned
+table(divvy_trips$member_casual)
+```
+<br>
+
+**2. Add columns that list the date, month, day, and year of each ride.
+This will allow us to aggregate ride data for each month, day, or year:**
+```{r}
+# Date in yyyy-mm-dd
+divvy_trips$date <- as.Date(divvy_trips$started_at)
+
+# year, month, day, day of week
+divvy_trips$year <- format(as.Date(divvy_trips$date), "%Y")
+divvy_trips$month <- format(as.Date(divvy_trips$date), "%m")
+divvy_trips$day <- format(as.Date(divvy_trips$date), "%d")
+divvy_trips$day_of_week <- format(as.Date(divvy_trips$date), "%A")
+```
+<br>
+
+Order 'day_of_week' column from 'Sunday' to 'Saturday':
+```{r}
+# order day_of_week
+divvy_trips$day_of_week <- ordered(divvy_trips$day_of_week
+                                   , levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+```
+<br>
+
+**3. Add 'ride_duration' column for duration of the rides**
+```{r}
+divvy_trips$ride_duration = difftime(divvy_trips$ended_at, divvy_trips$started_at)
+```
+<br>
+
+Inspect structure of 'ride_duration' column:
+```{r}
+str(divvy_trips$ride_duration)
+```
+- 'ride_duration' is in seconds.
+
+<br>
+
+Convert "ride_duration" to numeric so that calculation can be performed on it:
+```{r}
+divvy_trips$ride_duration <- as.numeric(divvy_trips$ride_duration)
+is.numeric(divvy_trips$ride_duration)
+```
+<br>
+
+**4. Clean the "bad" data**
+
+Number of negative ride duration:
+```{r}
+length(divvy_trips$ride_id[divvy_trips$ride_duration < 0])
+```
+<br>
+Number of bikes taken out of docks and checked for quality by Divvy:
+```{r}
+length(divvy_trips$ride_id[divvy_trips$start_station_name == "HQ QR"])
+```
+<br>
+Remove rows with bikes taken out of docks and negative ride duration:
+```{r}
+divvy_trips_cleaned <- divvy_trips[!(divvy_trips$start_station_name == "HQ QR"
+                                     | divvy_trips$ride_duration < 0), ]
+```
+<br>
+
+### Data ready for analysis:
+```{r}
+head(divvy_trips_cleaned)
+dim(divvy_trips_cleaned)
+```
+
+<br>
+<br>
+
+# Analyze & Visualize
+<br>
+
+### Step 4: Conduct Descriptive Analysis and Visualize Analysis
+
+Statistical summary on "ride_duration" (secs):
+```{r}
+summary(divvy_trips_cleaned$ride_duration)
+```
+<br>
+
+#### Compare members and casual users' ride duration (secs):
+```{r}
+setNames(aggregate(divvy_trips_cleaned$ride_duration ~ divvy_trips_cleaned$member_casual
+                   , FUN = mean), c("member/casual", "ride_duration_mean"))
+setNames(aggregate(divvy_trips_cleaned$ride_duration ~ divvy_trips_cleaned$member_casual
+                   , FUN = median), c("member/casual", "ride_duration_median"))
+setNames(aggregate(divvy_trips_cleaned$ride_duration ~ divvy_trips_cleaned$member_casual
+                   , FUN = max), c("member/casual", "ride_duration_max"))
+setNames(aggregate(divvy_trips_cleaned$ride_duration ~ divvy_trips_cleaned$member_casual
+                   , FUN = min), c("member/casual", "ride_duration_min"))
+```
+- The mean and median ride duration of casual riders are higher than members!
+- Let's visualize this in a chart!
+
+<br>
+
+## Compare average number of rides and average ride duration between casual and member riders
+```{r}
+res1 <- divvy_trips_cleaned %>%
+  group_by(member_casual) %>%
+  summarize(number_of_rides = n()
+            , mean_ride_duration = mean(ride_duration))
+```
+```{r}
+res1 %>%
+  ggplot(aes(x = member_casual, y = number_of_rides)) +
+  geom_col(aes(fill = number_of_rides)) +
+  scale_fill_gradient2(low = "orange", 
+                       high = "darkblue", 
+                       midpoint = median(res1$number_of_rides)) +
+  theme(legend.position = "none") +
+  xlab("") +
+  ylab("Number of Rides") +
+  labs(title = "Number of Rides", subtitle = "Casual vs Member")
+```
+```{r}
+res1 %>%
+  ggplot(aes(x = member_casual, y = mean_ride_duration)) +
+  geom_col(aes(fill = mean_ride_duration)) +
+  scale_fill_gradient2(low = "darkblue", 
+                       high = "orange", 
+                       midpoint = median(res1$mean_ride_duration)) +
+  theme(legend.position = "none") +
+  xlab("") +
+  ylab("Average Ride Duration") +
+  labs(title = "Average Ride Duration", subtitle = "Casual vs Member")
+```
+<br>
+
+- It seems like casual riders uses the bikes less frequently but for a longer period of time! There must be a reason for this.
+- Let's take a look at how casual riders and members' ridership data by each weekday!
+
+<br>
+
+#### Average ride duration by each day for casual users and members:
+```{r}
+setNames(aggregate(divvy_trips_cleaned$ride_duration
+                  ~ divvy_trips_cleaned$member_casual
+                  + divvy_trips_cleaned$day_of_week
+                  , FUN = mean)
+          , c("member/casual", "day_of_week", "ride_duration_mean"))
+```
+- At first glance, average ride duration on each day seems to be significantly higher for casual riders than members, which aligns with what was previously analyzed.
+- Let's visualize this in a chart!
+
+<br>
+
+## Analyze ridership data by type and weekday
+```{r}
+res2 <- divvy_trips_cleaned %>%
+  group_by(member_casual, day_of_week) %>%
+  summarize(number_of_rides = n()
+            , mean_ride_duration = mean(ride_duration)) %>%
+  arrange(member_casual, day_of_week)
+```
+<br>
+
+#### Average Ride Duration Throughout the Week (casual vs member)
+```{r}
+res2 %>%
+  ggplot(aes(x = day_of_week, y = mean_ride_duration, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  xlab("") +
+  ylab("Average Ride Duration") +
+  labs(title = "Average Ride Duration Throughout the Week"
+       , subtitle = "Casual vs Member")
+```
+<br>
+
+- The average ride duration throughout the week seems to be consistent for both types of riders even though members ride the bikes more often!
+
+<br>
+
+#### Number of Rides Throughout the Week
+```{r}
+res2 %>%
+  ggplot(aes(x = day_of_week, y = number_of_rides, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  xlab("") +
+  ylab("Number of Rides") +
+  labs(title = "Number of Rides Throughout the Week"
+       , subtitle = "Casual vs Member")
+```
+<br>
+
+- There seems to be a pattern here!
+- The y-axis scale for member and casual riders are very different, making it difficult to see the trend.
+- Let's visualize members and casual riders separately!
+
+<br>
+
+#### Visualize trend of number of rides of casual riders throughout the week
+```{r}
+res2 %>%
+  filter(member_casual == "casual") %>%
+  ggplot(aes(x = day_of_week, y = number_of_rides, group = 1)) +
+  geom_point(color = "orange") +
+  geom_line(color = "orange") +
+  xlab("") +
+  ylab("Number of Rides") +
+  labs(title = "Number of Rides of Casual Riders")
+```
+<br>
+
+- It seems like casual riders use the bikes more often on the weekends (Saturday and Sunday).
+- This is perhaps due to casual riders use the bikes for relaxation and as a bonding exercise with family and friends.
+- This is also the reason why the average ride duration of casual riders is significantly higher than members throughout the week.
+
+<br>
+
+#### Visualize trend of number of rides of members throughout the week
+```{r}
+res2 %>%
+  filter(member_casual == "member") %>%
+  ggplot(aes(x = day_of_week, y = number_of_rides, group = 1)) +
+  geom_point(color = "darkblue") +
+  geom_line(color = "darkblue") +
+  xlab("") +
+  ylab("Number of Rides") +
+  labs(title = "Number of Rides of Members")
+```
+<br>
+
+- It seems like members use the bikes more frequently from Monday to Sunday.
+- This is perhaps due to members use the bikes as a form of transportation regularly on the weekdays to travel to work/school.
+- This is also the reason why members use the bikes more compared to casual riders all together.
+
+<br>
+
+## Analyse ridership data by Type and Month
+```{r}
+res3 <- divvy_trips_cleaned %>%
+  group_by(member_casual, month) %>%
+  summarize(number_of_rides = n()
+            , mean_ride_duration = mean(ride_duration)) %>%
+  arrange(member_casual, month)
+```
+<br>
+
+#### Average Ride Duration of casual riders and members by Months
+```{r}
+res3 %>%
+  ggplot(aes(x = month, y = mean_ride_duration, color = member_casual)) +
+  geom_col() +
+  xlab("Months") +
+  ylab("Average Ride Duration") +
+  labs(title = "Average Ride Duration (Months)")
+```
+<br>
+
+- There seems to be a pattern for casual riders in their average ride duration from month to month! Let's visualize them separately!
+
+<br>
+
+#### Average Ride Duration of casual riders by Months
+```{r}
+res3 %>%
+  filter(member_casual == "casual") %>%
+  ggplot(aes(x = month, y = mean_ride_duration)) +
+  geom_col(fill = "orange") +
+  xlab("Months") +
+  ylab("Average Ride Duration") +
+  labs(title = "Average Ride Duration of Casual Riders (Months)")
+```
+<br>
+
+- The bar graph looks right skewed! It seems like casual riders use the bikes significantly longer in the first few months of a year!
+- This may be due to casual riders using the bikes longer as a form of exercise in order to meet their New Year's resolution!
+
+<br>
+
+#### Average Ride Duration of members by Months
+```{r}
+res3 %>%
+  filter(member_casual == "member") %>%
+  ggplot(aes(x = month, y = mean_ride_duration)) +
+  geom_col(fill = "darkblue") +
+  xlab("Months") +
+  ylab("Average Ride Duration") +
+  labs(title = "Average Ride Duration of Members (Months)")
+```
+<br>
+
+- The bar graph looks uniformly distributed throughout the year! It seems like members are consistent in their riding duration.
+- This may be due to the distance covered by the bikes, when using it as a form of transportation, does not change throughout the year.
+
+<br>
+
+# Export data sets for further analysis and visualisation:
+```{r eval=FALSE}
+write.csv(divvy_trips_cleaned, 'Dataset/divvy_trips_cleaned.csv')
+write.csv(res1, 'Dataset/res1.csv')
+write.csv(res2, 'Dataset/res2.csv')
+write.csv(res3, 'Dataset/res3.csv')
+```
+<br>
+
+# Conclusion of Analysis:
+
+### Casual Riders:
+- Casual riders use the bikes for **relaxation** and as a **bonding exercise** with family and friends.
+  - Casual riders has significantly **higher average ride duration** of than members **throughout the week.**
+  - Casual riders use the bikes **more often** on the **weekends** (Saturday and Sunday).
+  
+- Casual riders use the bikes as a form of exercise in order to meet their **New Year's resolution**.
+  - Casual riders **use** the bikes **significantly longer** in the **first few months** of the year.
+
+<br>
+
+### Members:
+- Members use the bikes as a **form of transportation** regularly to travel to work/school.
+  - Members **use** the bikes **more** compared to casual riders all together.
+  - Members use the bikes **more frequently** on **weekdays** (Monday to Sunday).
+  - Members are **consistent** in their **riding duration throughout the year.**
+
+<br>
+
+##### Overall: Casual riders uses the bikes less frequently but for a longer period of time
+
+<br>
+
+# Recommendations:
+1. Advertise during New Year's period to convince casual riders to convert to members
+2. Encourage casual riders to sign up for membership to use bikes as alternative mode of transportation, for health and environment
+3. Introduce an exclusive members' community with members' only bonding and relaxation events/activities
+
+<br>
+
+# Future Improvements:
+- Collect survey data for analysis to better understand the decision-making mindset of casual riders vs members.
+- A larger data set can be used for analyzing longer term trends and behaviors of riders.
+- The start and end stations can be analyzed to see if there are any particular areas that have more members and find the reasons for such occurrences.
