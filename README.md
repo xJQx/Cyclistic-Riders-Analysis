@@ -6,14 +6,21 @@
 ## Scenario:
 I am a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, my team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, my team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve my recommendations, so they must be backed up with compelling data insights and professional data visualizations.
 
-#### Business Task
+#### Business Task:
 - How do annual members and casual riders use Cyclistic bikes differently?
 - Analyse how annual members and causal riders use Cyclistic bikes differently and provide data-driven recommendations for a new marketing strategy to convert causal riders to members
 
-#### Key Stakeholders
+#### Key Stakeholders:
 - **Lily Monero**: Director of Marketing and my manager
 - **Cyclistic Marketing analytics team**: Team of data analysts
 - **Cyclists executive team**: Stakeholder approving recommendations
+
+<br>
+
+## R Documentation of Data Analysis Process:
+- Ask, Prepare, Process, Analyze, Share, Act
+
+**Link**
 
 <br>
 
@@ -36,6 +43,14 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 <br>
 
 ## Visualization:
+### Comparing Average Number of Rides & Average Ride Duration between Casual Riders and Members:
+<p>
+  <img width="480" alt="chart-res1-1" src="https://user-images.githubusercontent.com/47933193/144340798-645d8509-0d39-43ff-9e67-3f09bfcb65c2.png">
+  <img width="480" alt="chart-res1-2" src="https://user-images.githubusercontent.com/47933193/144340807-48e6948d-3a51-49ff-87dc-94ab8a5875b4.png">
+</p>
+
+---
+
 ### Average Ride Duration & Number of Rides by Type and Weekday:
 <p>
   <img width="480" alt="chart-res2-1" src="https://user-images.githubusercontent.com/47933193/144337452-5434f6d2-7bf9-4a98-a9cd-4ff9a62be130.png">
@@ -58,6 +73,8 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
   <img width="480" alt="chart-res3-2" src="https://user-images.githubusercontent.com/47933193/144337188-f82f171d-dfec-495a-932e-8a8b0e277a3b.png">
   <img width="480" alt="chart-res3-3" src="https://user-images.githubusercontent.com/47933193/144337210-c920b194-b8f3-4f93-8ff5-fcc5749a1300.png">
 </p>
+
+---
 
 <br>
 
