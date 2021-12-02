@@ -1,4 +1,4 @@
-# Case Study: How Does a Bike-Share Navigate Speedy Success?
+# How Does a Bike-Share Navigate Speedy Success?
 <p align="center">
   <img width="250" alt="logo" src="https://user-images.githubusercontent.com/47933193/144336698-b4ac6936-f973-4f26-af9a-ada9f92b55d5.png">
 </p>
