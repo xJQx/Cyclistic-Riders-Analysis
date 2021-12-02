@@ -15,7 +15,10 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 - **Cyclistic Marketing analytics team**: Team of data analysts
 - **Cyclists executive team**: Stakeholder approving recommendations
 
-#### Dataset: [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
+<br>
+
+#### *Background Info:* [background-info](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/Background%20Info.pdf)
+#### *Dataset:* [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
 
 <br>
 
@@ -25,7 +28,6 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 - [R Code](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/R%20codes/R-codes.R) <br>
 - [R Markdown Code](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/R%20codes/R-documentation.Rmd)
 
-**Link**
 
 ### Excel Pivot Table and Chart:
 - [Excel Pivot Table](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/Dataset/pivot-table-chart.xlsx) <br>
