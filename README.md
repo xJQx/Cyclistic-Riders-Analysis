@@ -48,22 +48,22 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 ## Visualization:
 ### Comparing Average Number of Rides & Average Ride Duration between Casual Riders and Members:
 <p>
-  <img width="480" alt="chart-res1-1" src="https://user-images.githubusercontent.com/47933193/144340798-645d8509-0d39-43ff-9e67-3f09bfcb65c2.png">
-  <img width="480" alt="chart-res1-2" src="https://user-images.githubusercontent.com/47933193/144340807-48e6948d-3a51-49ff-87dc-94ab8a5875b4.png">
+  <img width="400" alt="chart-res1-1" src="https://user-images.githubusercontent.com/47933193/144340798-645d8509-0d39-43ff-9e67-3f09bfcb65c2.png">
+  <img width="400" alt="chart-res1-2" src="https://user-images.githubusercontent.com/47933193/144340807-48e6948d-3a51-49ff-87dc-94ab8a5875b4.png">
 </p>
 
 ---
 
 ### Average Ride Duration & Number of Rides by Type and Weekday:
 <p>
-  <img width="480" alt="chart-res2-1" src="https://user-images.githubusercontent.com/47933193/144337452-5434f6d2-7bf9-4a98-a9cd-4ff9a62be130.png">
-  <img width="480" alt="chart-res2-2" src="https://user-images.githubusercontent.com/47933193/144337462-af83ffe3-ff6e-4ecd-860f-7cb852e72f77.png">
+  <img width="400" alt="chart-res2-1" src="https://user-images.githubusercontent.com/47933193/144337452-5434f6d2-7bf9-4a98-a9cd-4ff9a62be130.png">
+  <img width="400" alt="chart-res2-2" src="https://user-images.githubusercontent.com/47933193/144337462-af83ffe3-ff6e-4ecd-860f-7cb852e72f77.png">
 </p>
 
 ### Number of Rides Trend for Casual Riders vs Members:
 <p>
-  <img width="480" alt="chart-res2-3" src="https://user-images.githubusercontent.com/47933193/144337153-f857eb26-d523-426a-9c4c-ed3ad3fa483c.png">
-  <img width="480" alt="chart-res2-4" src="https://user-images.githubusercontent.com/47933193/144337174-3d6cb4e9-ac73-4ab7-aca7-5eb4aac9f4f8.png">
+  <img width="400" alt="chart-res2-3" src="https://user-images.githubusercontent.com/47933193/144337153-f857eb26-d523-426a-9c4c-ed3ad3fa483c.png">
+  <img width="400" alt="chart-res2-4" src="https://user-images.githubusercontent.com/47933193/144337174-3d6cb4e9-ac73-4ab7-aca7-5eb4aac9f4f8.png">
 </p>
 
 ---
@@ -73,8 +73,8 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
   <img width="549" alt="chart-res3-1" src="https://user-images.githubusercontent.com/47933193/144337205-5399ba80-d2c5-4322-bf8b-45cef41e8d44.png">
 </p>
 <p>
-  <img width="480" alt="chart-res3-2" src="https://user-images.githubusercontent.com/47933193/144337188-f82f171d-dfec-495a-932e-8a8b0e277a3b.png">
-  <img width="480" alt="chart-res3-3" src="https://user-images.githubusercontent.com/47933193/144337210-c920b194-b8f3-4f93-8ff5-fcc5749a1300.png">
+  <img width="400" alt="chart-res3-2" src="https://user-images.githubusercontent.com/47933193/144337188-f82f171d-dfec-495a-932e-8a8b0e277a3b.png">
+  <img width="400" alt="chart-res3-3" src="https://user-images.githubusercontent.com/47933193/144337210-c920b194-b8f3-4f93-8ff5-fcc5749a1300.png">
 </p>
 
 ---
