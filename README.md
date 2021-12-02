@@ -24,7 +24,7 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 
 ## Documentation of Data Analysis Process:
 ### R Documentation:
-- **[R Documentation*](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/R%20codes/R-documentation.Rmd)** <br>
+- **[R Documentation*](https://xjqx.github.io/Cyclistic-Riders-Analysis/)** <br>
 - [R Code](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/R%20codes/R-codes.R) <br>
 - [R Markdown Code](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/R%20codes/R-documentation.Rmd)
 
