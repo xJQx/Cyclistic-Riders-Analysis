@@ -21,11 +21,16 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 
 ## Documentation of Data Analysis Process:
 ### R Documentation:
+- **[R Documentation*](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/R%20codes/R-documentation.Rmd)** <br>
+- [R Code](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/R%20codes/R-codes.R) <br>
+- [R Markdown Code](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/R%20codes/R-documentation.Rmd)
 
 **Link**
 
 ### Excel Pivot Table and Chart:
-
+- [Excel Pivot Table](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/Dataset/pivot-table-chart.xlsx) <br>
+- [Excel Pivot Table Image](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/Visualisation/excel-pivotchart.png) <br>
+- [Excel Pivot Chart Image](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/Visualisation/excel-pivot-chart.png)
 
 <br>
 
