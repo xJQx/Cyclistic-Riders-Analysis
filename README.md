@@ -3,6 +3,16 @@
   <img width="250" alt="logo" src="https://user-images.githubusercontent.com/47933193/144336698-b4ac6936-f973-4f26-af9a-ada9f92b55d5.png">
 </p>
 
+![R](https://img.shields.io/badge/R-grey?style=flat-square&logo=R&logoColor=ffffff)
+![Excel](https://img.shields.io/badge/Excel-green?style=flat-square&logo=microsoft&logoColor=ffffff)
+
+#### Background Info: https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/Background%20Info.pdf
+#### Dataset: https://divvy-tripdata.s3.amazonaws.com/index.html
+#### R Documentation: https://xjqx.github.io/Cyclistic-Riders-Analysis/
+#### Slide Deck: https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/Slide%20Deck.pdf
+
+<br>
+
 ## Scenario:
 I am a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, my team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, my team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve my recommendations, so they must be backed up with compelling data insights and professional data visualizations.
 
@@ -14,11 +24,6 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 - **Lily Monero**: Director of Marketing and my manager
 - **Cyclistic Marketing analytics team**: Team of data analysts
 - **Cyclists executive team**: Stakeholder approving recommendations
-
-<br>
-
-#### *Background Info:* [background-info](https://github.com/xJQx/Cyclistic-Riders-Analysis/blob/main/Background%20Info.pdf)
-#### *Dataset:* [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
 
 <br>
 
