@@ -15,6 +15,8 @@ I am a junior data analyst working in the marketing analyst team at Cyclistic, a
 - **Cyclistic Marketing analytics team**: Team of data analysts
 - **Cyclists executive team**: Stakeholder approving recommendations
 
+#### Dataset: [divvy-tripdata](https://divvy-tripdata.s3.amazonaws.com/index.html)
+
 <br>
 
 ## Documentation of Data Analysis Process:
